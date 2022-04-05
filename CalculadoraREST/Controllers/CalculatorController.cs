@@ -18,7 +18,7 @@ namespace CalculadoraREST.Controllers
         }
 
         [HttpGet("sum/{firstNumber}/{secondNumber}")]
-        public IActionResult Get(string firstNumber, string secondNumber)
+        public IActionResult Sum(string firstNumber, string secondNumber)
         {
             if(IsNumeric(firstNumber) && IsNumeric(secondNumber))
             {
@@ -28,6 +28,36 @@ namespace CalculadoraREST.Controllers
             return BadRequest("Invalid Input");
         }
 
+        [HttpGet("sub/{firstNumber}/{secondNumber}")]
+        public IActionResult Subtraction(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDecimal(firstNumber) - ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+        [HttpGet("multiplication/{firstNumber}/{secondNumber}")]
+        public IActionResult Multiplication(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDecimal(firstNumber) * ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
+        [HttpGet("div/{firstNumber}/{secondNumber}")]
+        public IActionResult Division(string firstNumber, string secondNumber)
+        {
+            if (IsNumeric(firstNumber) && IsNumeric(secondNumber))
+            {
+                var sum = ConvertToDecimal(firstNumber) / ConvertToDecimal(secondNumber);
+                return Ok(sum.ToString());
+            }
+            return BadRequest("Invalid Input");
+        }
 
         private bool IsNumeric(string sNumber)
         {
